@@ -1,0 +1,27 @@
+{
+  "network": {
+    "servers": ["logstash.example.com:5555"],
+    "ssl certificate": "/config/lumberjack.crt",
+    "ssl key": "/config/lumberjack.key",
+    "ssl ca": "/config/lumberjack.crt",
+    "timeout": 15
+  },
+
+  # The list of files configurations
+  "files": [
+    # An array of hashes. Each hash tells what paths to watch and
+    # what fields to annotate on events from those paths.
+      {
+      "paths": [
+        # single paths are fine
+        "/var/log/messages",
+        # globs are fine too, they will be periodically evaluated
+        # to see if any new files match the wildcard.
+            "/var/log/*.log"
+      ],
+
+    # A dictionary of fields to annotate on each event.
+      "fields": { "type": "syslog" }
+    }
+  ]
+}
