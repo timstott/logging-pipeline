@@ -1,0 +1,7 @@
+logstash:
+  image: logstash:1.5
+  command: logstash -f /config/logstash.conf -vv
+  volumes:
+    - "$PWD/config:/config"
+  ports:
+    - "3333:3333"
